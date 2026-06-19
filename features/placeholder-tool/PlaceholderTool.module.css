@@ -1,0 +1,200 @@
+.tool {
+  display: grid;
+  gap: 18px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.header p {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 6vw, 72px);
+  line-height: 0.95;
+}
+
+.header span {
+  display: block;
+  max-width: 720px;
+  margin-top: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.header strong {
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--accent-strong);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.toolSigil {
+  display: none;
+}
+
+:root[data-visual-mode="corrupted"] .toolSigil {
+  display: block;
+  margin-left: auto;
+}
+
+.panel {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel-soft);
+}
+
+.corruptedPanel {
+  display: none;
+}
+
+.panel h3 {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+}
+
+.panel p {
+  max-width: 780px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.inputs label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.inputs input {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  color: var(--faint);
+  background: var(--panel);
+}
+
+:root[data-visual-mode="corrupted"] .header {
+  position: relative;
+  background:
+    radial-gradient(ellipse 60% 80% at 48% 55%, rgba(122, 144, 96, 0.045), transparent 65%),
+    repeating-linear-gradient(90deg, rgba(154, 112, 48, 0.012) 0 1px, transparent 1px 16px),
+    var(--panel);
+  box-shadow: inset 5px 0 0 rgba(204, 0, 0, 0.55);
+}
+
+:root[data-visual-mode="corrupted"] .header::before {
+  content: "0x AUDIO RITE // FORMULA NOT YET BOUND";
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .header h2 {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+  text-transform: none;
+  text-shadow: 2px 0 rgba(204, 0, 0, 0.45), -2px 0 rgba(58, 90, 84, 0.35);
+}
+
+:root[data-visual-mode="corrupted"] .panel {
+  position: relative;
+  background:
+    repeating-linear-gradient(0deg, rgba(122, 144, 96, 0.014) 0 1px, transparent 1px 16px),
+    var(--panel-soft);
+}
+
+:root[data-visual-mode="corrupted"] .corruptedPanel {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  border: 1px solid var(--line);
+  padding: 12px 14px;
+  background:
+    repeating-linear-gradient(90deg, rgba(154, 112, 48, 0.012) 0 1px, transparent 1px 12px),
+    rgba(8, 10, 6, 0.9);
+}
+
+:root[data-visual-mode="corrupted"] .corruptedPanel::before {
+  content: "ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ";
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  color: var(--accent-strong);
+  font-family: serif;
+  font-size: 13px;
+  opacity: 0.42;
+}
+
+:root[data-visual-mode="corrupted"] .corruptedPanel h3 {
+  margin: 0;
+  color: var(--warn);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .corruptedPanel h3::before {
+  content: "[";
+  color: var(--faint);
+}
+
+:root[data-visual-mode="corrupted"] .corruptedPanel h3::after {
+  content: "]";
+  color: var(--faint);
+}
+
+:root[data-visual-mode="corrupted"] .corruptedPanel p {
+  max-width: 780px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+:root[data-visual-mode="corrupted"] .panel h3::before {
+  content: ":: ";
+  color: var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .panel h3::after {
+  content: " ::";
+  color: var(--accent-strong);
+}
+
+@media (max-width: 720px) {
+  .header {
+    align-items: start;
+    flex-direction: column;
+    padding: 18px;
+  }
+}

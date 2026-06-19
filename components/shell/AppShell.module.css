@@ -1,0 +1,520 @@
+.shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.shellCollapsed {
+  grid-template-columns: var(--sidebar-closed) minmax(0, 1fr);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  border-right: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  box-shadow: var(--shadow);
+}
+
+:root[data-visual-mode="corrupted"] .sidebar {
+  background:
+    repeating-linear-gradient(0deg, rgba(122, 144, 96, 0.018) 0 1px, transparent 1px 16px),
+    repeating-linear-gradient(90deg, rgba(154, 112, 48, 0.012) 0 1px, transparent 1px 16px),
+    var(--panel);
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 82px;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+:root[data-visual-mode="corrupted"] .brandRow {
+  min-height: 88px;
+  border-bottom-color: var(--wire-strong);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.brandMark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  color: var(--accent-strong);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+:root[data-visual-mode="corrupted"] .brandMark {
+  color: var(--accent);
+  border-color: var(--accent-strong);
+  text-shadow: 2px 0 rgba(204, 0, 0, 0.58), -2px 0 rgba(58, 90, 84, 0.48);
+}
+
+.brandText {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.brandText strong,
+.navText strong,
+.searchResult strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brandText small,
+.navText small,
+.searchResult span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.operatorCorrupted {
+  display: none;
+}
+
+:root[data-visual-mode="corrupted"] .operatorNormal {
+  display: none;
+}
+
+:root[data-visual-mode="corrupted"] .operatorCorrupted {
+  display: inline;
+}
+
+:root[data-visual-mode="corrupted"] .brandText strong::before {
+  content: "[GRIMOIRE] ";
+  color: var(--accent-strong);
+  font-weight: 400;
+}
+
+:root[data-visual-mode="corrupted"] .brandText small {
+  color: var(--faint);
+}
+
+.iconButton {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  background: var(--panel-soft);
+}
+
+.navList {
+  display: grid;
+  gap: 6px;
+  padding: 14px 10px;
+}
+
+.sidebarSeal {
+  display: none;
+}
+
+:root[data-visual-mode="corrupted"] .sidebarSeal {
+  display: grid;
+  gap: 7px;
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(2, 3, 1, 0.34);
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+}
+
+:root[data-visual-mode="corrupted"] .navItem {
+  position: relative;
+  min-height: 64px;
+  border-color: transparent;
+  background:
+    repeating-linear-gradient(90deg, rgba(122, 144, 96, 0.018) 0 1px, transparent 1px 7px),
+    rgba(8, 10, 6, 0.72);
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .navItem::before,
+:root[data-visual-mode="corrupted"] .navItem::after,
+:root[data-visual-mode="corrupted"] .modeSwitch::before,
+:root[data-visual-mode="corrupted"] .modeSwitch::after,
+:root[data-visual-mode="corrupted"] .searchPanel::before,
+:root[data-visual-mode="corrupted"] .searchPanel::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
+}
+
+:root[data-visual-mode="corrupted"] .navItem::before,
+:root[data-visual-mode="corrupted"] .modeSwitch::before,
+:root[data-visual-mode="corrupted"] .searchPanel::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--accent-strong);
+  border-left: 1px solid var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .navItem::after,
+:root[data-visual-mode="corrupted"] .modeSwitch::after,
+:root[data-visual-mode="corrupted"] .searchPanel::after {
+  right: 0;
+  bottom: 0;
+  border-right: 1px solid var(--accent-strong);
+  border-bottom: 1px solid var(--accent-strong);
+}
+
+.navItem:hover,
+.active {
+  border-color: var(--line);
+  background: var(--panel-strong);
+}
+
+.active {
+  color: var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .active {
+  color: var(--accent);
+  border-color: var(--wire-strong);
+  background: rgba(20, 24, 16, 0.92);
+}
+
+.navGlyph {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.navText {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.sideFooter {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.modeLabel {
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.modeSwitch {
+  display: grid;
+  gap: 5px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  color: var(--text);
+  background: var(--panel-soft);
+  text-align: left;
+}
+
+:root[data-visual-mode="corrupted"] .modeSwitch {
+  position: relative;
+  border-color: var(--wire-strong);
+  background:
+    linear-gradient(90deg, rgba(204, 0, 0, 0.08), transparent 34%),
+    rgba(8, 10, 6, 0.92);
+}
+
+.modeSwitch b {
+  color: var(--accent-strong);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.workspace {
+  min-width: 0;
+}
+
+:root[data-visual-mode="corrupted"] .workspace {
+  padding-right: 238px;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 82px;
+  padding: 14px 26px;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 84%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+:root[data-visual-mode="corrupted"] .topbar {
+  border-bottom-color: var(--wire-strong);
+  background: rgba(2, 3, 1, 0.88);
+  backdrop-filter: blur(8px);
+}
+
+:root[data-visual-mode="corrupted"] .topbar::after {
+  content: "RECOVERED: C:\\AUDIO\\SWISS_KNIFE.EXE  //  CRC INVALID  //  DO NOT NORMALIZE";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1px 26px;
+  border-top: 1px solid var(--line);
+  color: var(--danger);
+  background: rgba(8, 10, 6, 0.94);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  line-height: 1.2;
+}
+
+.kicker {
+  margin: 0 0 5px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .kicker::before {
+  content: "[PROTOCOL] ";
+  color: var(--faint);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+:root[data-visual-mode="corrupted"] .topbar h1 {
+  color: var(--text);
+  font-size: clamp(18px, 3vw, 38px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-shadow: 2px 0 rgba(204, 0, 0, 0.5), -2px 0 rgba(58, 90, 84, 0.45), 0 0 18px rgba(154, 152, 128, 0.1);
+  animation: corruptedTitle 13s steps(1) infinite;
+}
+
+.searchBox {
+  display: grid;
+  gap: 6px;
+  width: min(420px, 42vw);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.searchBox input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  color: var(--text);
+  background: var(--panel);
+}
+
+:root[data-visual-mode="corrupted"] .searchBox input {
+  border-color: var(--wire-strong);
+  background:
+    repeating-linear-gradient(90deg, rgba(122, 144, 96, 0.025) 0 1px, transparent 1px 7px),
+    rgba(8, 10, 6, 0.95);
+  color: var(--accent);
+}
+
+.searchPanel {
+  margin: 18px 26px 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+:root[data-visual-mode="corrupted"] .searchPanel {
+  position: relative;
+  border-color: var(--wire-strong);
+}
+
+.searchHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.searchHeader button {
+  border: 0;
+  color: var(--accent-strong);
+  background: transparent;
+}
+
+.searchResults {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1px;
+  background: var(--line);
+}
+
+.searchResult {
+  display: grid;
+  gap: 5px;
+  min-height: 72px;
+  padding: 12px;
+  background: var(--panel-soft);
+}
+
+.main {
+  padding: 26px;
+}
+
+:root[data-visual-mode="corrupted"] .main {
+  padding: 14px 14px 28px;
+}
+
+.shellCollapsed .brandText,
+.shellCollapsed .navText,
+.shellCollapsed .modeLabel,
+.shellCollapsed .modeSwitch span,
+.shellCollapsed .modeSwitch b,
+.shellCollapsed .sidebarSeal {
+  display: none;
+}
+
+.shellCollapsed .brandRow,
+.shellCollapsed .navItem {
+  justify-content: center;
+}
+
+:root[data-visual-mode="corrupted"] .brandMark,
+:root[data-visual-mode="corrupted"] .modeSwitch,
+:root[data-visual-mode="corrupted"] .active {
+  box-shadow: 2px 0 0 rgba(204, 0, 0, 0.55), -2px 0 0 rgba(58, 90, 84, 0.45);
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .navItem:hover {
+  transform: translateX(2px);
+}
+
+@keyframes corruptedTitle {
+  0%,
+  90%,
+  100% {
+    clip-path: none;
+    transform: none;
+  }
+  91% {
+    clip-path: inset(0 0 48% 0);
+    transform: translateX(-2px) skewX(-0.5deg);
+  }
+  92% {
+    clip-path: inset(52% 0 0 0);
+    transform: translateX(3px);
+  }
+  93% {
+    clip-path: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .shell,
+  .shellCollapsed {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: relative;
+    height: auto;
+  }
+
+  .brandRow {
+    min-height: auto;
+  }
+
+  .navList {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    overflow-x: auto;
+  }
+
+  .navItem {
+    min-width: 70px;
+    justify-content: center;
+  }
+
+  .navText,
+  .brandText {
+    display: none;
+  }
+
+  .sideFooter {
+    position: static;
+    padding: 0 12px 12px;
+  }
+
+  .topbar {
+    position: relative;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .searchBox {
+    width: 100%;
+  }
+
+  .main {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 1160px) {
+  :root[data-visual-mode="corrupted"] .workspace {
+    padding-right: 0;
+  }
+}
