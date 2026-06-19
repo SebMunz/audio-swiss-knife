@@ -1,0 +1,407 @@
+.sigil {
+  display: none;
+}
+
+.runeStrip {
+  display: none;
+}
+
+.rail,
+.bottomBar,
+.dataDeck {
+  display: none;
+}
+
+:root[data-visual-mode="corrupted"] .sigil {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  color: var(--accent);
+  opacity: 0.78;
+  mix-blend-mode: screen;
+}
+
+:root[data-visual-mode="corrupted"] .sigil svg {
+  width: min(250px, 100%);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 8px rgba(154, 112, 48, 0.18));
+}
+
+:root[data-visual-mode="corrupted"] .small svg {
+  width: 86px;
+}
+
+:root[data-visual-mode="corrupted"] .grid {
+  fill: none;
+  stroke: rgba(154, 112, 48, 0.42);
+  stroke-width: 1;
+  stroke-dasharray: 6 4;
+}
+
+:root[data-visual-mode="corrupted"] .circuit {
+  fill: none;
+  stroke: rgba(122, 144, 96, 0.7);
+  stroke-width: 1.3;
+}
+
+:root[data-visual-mode="corrupted"] .circuit circle {
+  fill: rgba(154, 112, 48, 0.5);
+}
+
+:root[data-visual-mode="corrupted"] .wave {
+  fill: none;
+  stroke: rgba(58, 90, 84, 0.72);
+  stroke-width: 1.4;
+}
+
+:root[data-visual-mode="corrupted"] .sigil text {
+  fill: rgba(226, 153, 48, 0.82);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+:root[data-visual-mode="corrupted"] .sigil .sub {
+  fill: rgba(122, 144, 96, 0.56);
+  font-size: 7px;
+  letter-spacing: 0.18em;
+}
+
+:root[data-visual-mode="corrupted"] .runes {
+  margin: 0;
+  color: var(--accent-strong);
+  font-family: serif;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  opacity: 0.7;
+  text-align: center;
+}
+
+:root[data-visual-mode="corrupted"] .runeStrip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  padding: 5px 8px;
+  color: var(--accent-strong);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  background:
+    repeating-linear-gradient(90deg, rgba(122, 144, 96, 0.018) 0 1px, transparent 1px 7px),
+    rgba(8, 10, 6, 0.88);
+}
+
+:root[data-visual-mode="corrupted"] .runeStrip span:first-child,
+:root[data-visual-mode="corrupted"] .runeStrip span:last-child {
+  font-family: serif;
+  letter-spacing: 0.22em;
+  white-space: nowrap;
+}
+
+:root[data-visual-mode="corrupted"] .compact {
+  font-size: 8px;
+  padding-block: 3px;
+}
+
+:root[data-visual-mode="corrupted"] .rail {
+  position: fixed;
+  top: 82px;
+  right: 0;
+  bottom: 18px;
+  z-index: 8;
+  display: flex;
+  width: 238px;
+  flex-direction: column;
+  overflow: hidden auto;
+  border-left: 1px solid var(--line);
+  background:
+    repeating-linear-gradient(0deg, rgba(122, 144, 96, 0.014) 0 1px, transparent 1px 16px),
+    repeating-linear-gradient(90deg, rgba(154, 112, 48, 0.01) 0 1px, transparent 1px 16px),
+    rgba(6, 7, 4, 0.94);
+}
+
+:root[data-visual-mode="corrupted"] .block {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  padding: 8px 9px 10px;
+  min-height: 158px;
+}
+
+:root[data-visual-mode="corrupted"] .block::before,
+:root[data-visual-mode="corrupted"] .block::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
+}
+
+:root[data-visual-mode="corrupted"] .block::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--accent-strong);
+  border-left: 1px solid var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .block::after {
+  right: 0;
+  bottom: 0;
+  border-right: 1px solid var(--accent-strong);
+  border-bottom: 1px solid var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .block h2 {
+  margin: 0 0 7px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .block h2::before {
+  content: ":: ";
+  color: var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .block h2::after {
+  content: " ::";
+  color: var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .cornerRune {
+  position: absolute;
+  top: 4px;
+  right: 7px;
+  color: var(--accent-strong);
+  font-family: serif;
+  font-size: 14px;
+  opacity: 0.55;
+}
+
+:root[data-visual-mode="corrupted"] .ansi {
+  overflow: hidden;
+  margin-bottom: 8px;
+  color: var(--faint);
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+:root[data-visual-mode="corrupted"] .omen {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .readout {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .readout i {
+  flex: 1;
+  overflow: hidden;
+  border-bottom: 1px dotted rgba(110, 110, 88, 0.32);
+  transform: translateY(-2px);
+}
+
+:root[data-visual-mode="corrupted"] .readout b {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+:root[data-visual-mode="corrupted"] .tablet {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  margin-top: 8px;
+  opacity: 0.55;
+}
+
+:root[data-visual-mode="corrupted"] .tablet span {
+  border: 1px solid rgba(122, 144, 96, 0.12);
+  padding: 2px 0;
+  color: var(--accent-strong);
+  font-family: serif;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+:root[data-visual-mode="corrupted"] .hex {
+  margin: 0;
+  color: #2e3824;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  line-height: 1.65;
+  text-transform: uppercase;
+  word-break: break-all;
+}
+
+:root[data-visual-mode="corrupted"] .hex span {
+  color: var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .hex b {
+  color: var(--danger);
+  font-weight: 400;
+}
+
+:root[data-visual-mode="corrupted"] .bottomBar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding: 2px 10px;
+  color: var(--faint);
+  background: rgba(2, 3, 1, 0.96);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .bottomBar b {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+:root[data-visual-mode="corrupted"] .dataDeck {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+:root[data-visual-mode="corrupted"] .deckPanel {
+  position: relative;
+  min-height: 128px;
+  border: 1px solid var(--line);
+  padding: 8px;
+  background:
+    repeating-linear-gradient(0deg, rgba(122, 144, 96, 0.014) 0 1px, transparent 1px 16px),
+    repeating-linear-gradient(90deg, rgba(154, 112, 48, 0.01) 0 1px, transparent 1px 16px),
+    rgba(8, 10, 6, 0.9);
+}
+
+:root[data-visual-mode="corrupted"] .deckPanel::before,
+:root[data-visual-mode="corrupted"] .deckPanel::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
+}
+
+:root[data-visual-mode="corrupted"] .deckPanel::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--accent-strong);
+  border-left: 1px solid var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .deckPanel::after {
+  right: 0;
+  bottom: 0;
+  border-right: 1px solid var(--accent-strong);
+  border-bottom: 1px solid var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .deckPanel h2 {
+  margin: 0 0 7px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .deckPanel h2::before {
+  content: ":: ";
+  color: var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .deckPanel h2::after {
+  content: " ::";
+  color: var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .interruptGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+}
+
+:root[data-visual-mode="corrupted"] .interruptGrid span {
+  border: 1px solid rgba(122, 144, 96, 0.1);
+  padding: 3px 0;
+  color: var(--accent-strong);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-align: center;
+}
+
+:root[data-visual-mode="corrupted"] .cmt {
+  margin: 7px 0 0;
+  border-left: 2px solid var(--line);
+  padding-left: 5px;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .miniSeal {
+  display: block;
+  width: 100%;
+  height: 52px;
+  margin: 2px 0 5px;
+  opacity: 0.62;
+}
+
+:root[data-visual-mode="corrupted"] .miniSeal path,
+:root[data-visual-mode="corrupted"] .miniSeal circle {
+  stroke: rgba(154, 112, 48, 0.62);
+  stroke-width: 1;
+}
+
+@media (max-width: 1160px) {
+  :root[data-visual-mode="corrupted"] .rail {
+    display: none;
+  }
+}
+
+@media (max-width: 980px) {
+  :root[data-visual-mode="corrupted"] .dataDeck {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  :root[data-visual-mode="corrupted"] .dataDeck {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,176 @@
+.card {
+  display: grid;
+  gap: 13px;
+  min-height: 210px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel), var(--panel-soft));
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease,
+    background 160ms ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.status,
+.category,
+.tags span {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 8px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.prototype {
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+.ready {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.card h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  gap: 7px;
+  margin-top: auto;
+}
+
+.corruptedCopy {
+  display: none;
+}
+
+:root[data-visual-mode="corrupted"] .card:hover {
+  box-shadow: inset 3px 0 0 rgba(204, 0, 0, 0.7), inset -3px 0 0 rgba(58, 90, 84, 0.55);
+  transform: translate(2px, -2px);
+}
+
+:root[data-visual-mode="corrupted"] .card {
+  position: relative;
+  min-height: 176px;
+  gap: 8px;
+  padding: 10px;
+  background:
+    repeating-linear-gradient(0deg, rgba(122, 144, 96, 0.014) 0 1px, transparent 1px 16px),
+    repeating-linear-gradient(90deg, rgba(154, 112, 48, 0.01) 0 1px, transparent 1px 16px),
+    var(--panel-soft);
+}
+
+:root[data-visual-mode="corrupted"] .card::before {
+  content: "ᚠᚢᚦ";
+  width: auto;
+  height: auto;
+  border: 0;
+  color: var(--accent-strong);
+  font-family: serif;
+  font-size: 12px;
+  opacity: 0.45;
+}
+
+:root[data-visual-mode="corrupted"] .card::before,
+:root[data-visual-mode="corrupted"] .card::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
+}
+
+:root[data-visual-mode="corrupted"] .card::after {
+  right: 0;
+  bottom: 0;
+  border-right: 1px solid var(--accent-strong);
+  border-bottom: 1px solid var(--accent-strong);
+}
+
+:root[data-visual-mode="corrupted"] .status::before {
+  content: "[";
+  color: var(--faint);
+}
+
+:root[data-visual-mode="corrupted"] .status::after {
+  content: "]";
+  color: var(--faint);
+}
+
+:root[data-visual-mode="corrupted"] .card h3 {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  text-transform: none;
+}
+
+:root[data-visual-mode="corrupted"] .card::before {
+  content: "ᚠ ᚢ ᚦ";
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  width: auto;
+  height: auto;
+  border: 0;
+  color: var(--accent-strong);
+  font-family: serif;
+  font-size: 11px;
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+:root[data-visual-mode="corrupted"] .corruptedCopy {
+  display: grid;
+  gap: 4px;
+  border-left: 2px solid var(--line);
+  padding-left: 7px;
+}
+
+:root[data-visual-mode="corrupted"] .corruptedCopy span {
+  color: var(--warn);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .corruptedCopy span::before {
+  content: "[";
+  color: var(--faint);
+}
+
+:root[data-visual-mode="corrupted"] .corruptedCopy span::after {
+  content: "]";
+  color: var(--faint);
+}
+
+:root[data-visual-mode="corrupted"] .corruptedCopy p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}

@@ -1,0 +1,136 @@
+.page {
+  display: grid;
+  gap: 22px;
+}
+
+.hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(100deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent 58%),
+    var(--panel);
+}
+
+.hero p {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.hero h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 6vw, 76px);
+  line-height: 0.95;
+}
+
+.hero span {
+  display: block;
+  max-width: 700px;
+  margin-top: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.categorySigil {
+  display: none;
+}
+
+:root[data-visual-mode="corrupted"] .categorySigil {
+  display: block;
+  align-self: center;
+}
+
+.stats div {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel-soft);
+}
+
+.stats dt {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.stats dd {
+  margin: 8px 0 0;
+  font-family: var(--font-display);
+  font-size: 34px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+  gap: 14px;
+}
+
+:root[data-visual-mode="corrupted"] .hero {
+  position: relative;
+  padding: 14px;
+  background:
+    repeating-linear-gradient(0deg, rgba(122, 144, 96, 0.018) 0 1px, transparent 1px 16px),
+    linear-gradient(90deg, rgba(160, 40, 32, 0.08), transparent 40%),
+    var(--panel);
+}
+
+:root[data-visual-mode="corrupted"] .page {
+  gap: 8px;
+}
+
+:root[data-visual-mode="corrupted"] .grid {
+  gap: 6px;
+  grid-template-columns: repeat(auto-fit, minmax(218px, 1fr));
+}
+
+:root[data-visual-mode="corrupted"] .hero::before {
+  content: "SECTOR MAP // TOOL TABLET // OPERATOR 0xF10VR_E";
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+:root[data-visual-mode="corrupted"] .hero h2 {
+  color: var(--text);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  text-shadow: 2px 0 rgba(204, 0, 0, 0.45), -2px 0 rgba(58, 90, 84, 0.38);
+}
+
+:root[data-visual-mode="corrupted"] .stats div {
+  background:
+    repeating-linear-gradient(90deg, rgba(154, 112, 48, 0.018) 0 1px, transparent 1px 9px),
+    var(--panel-soft);
+}
+
+@media (max-width: 760px) {
+  .hero {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 18px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
