@@ -4,7 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { categories, tools } from "@/data/tools";
-import { AudioSigil, CorruptedBottomBar, CorruptedGrimoireRail, RuneStrip } from "@/components/esoteric/AudioSigil";
+import {
+  AudioSigil,
+  CorruptedBottomBar,
+  CorruptedGrimoireRail,
+  CorruptedSignatureSeal,
+  RuneStrip
+} from "@/components/esoteric/AudioSigil";
 import { useUiStore } from "@/store/ui-store";
 import styles from "./AppShell.module.css";
 
@@ -89,6 +95,7 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
       </aside>
 
       <div className={styles.workspace}>
+        <CorruptedSignatureSeal />
         <header className={styles.topbar}>
           <div>
             <p className={styles.kicker}>Client-side audio toolkit</p>

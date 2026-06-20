@@ -55,6 +55,187 @@ export function RuneStrip({ compact = false }: Readonly<{ compact?: boolean }>) 
   );
 }
 
+export function CorruptedSignatureSeal() {
+  const ticks = Array.from({ length: 24 }, (_, index) => index * 15);
+  const innerTicks = Array.from({ length: 12 }, (_, index) => index * 30);
+
+  return (
+    <div className={styles.signatureSeal} aria-hidden="true">
+      <span className={`${styles.centerLabel} ${styles.topLabel}`}>[MALKUTH://AUDIO_SOCKET]</span>
+      <span className={`${styles.centerLabel} ${styles.leftLabel}`}>PORTAL A-13</span>
+      <span className={`${styles.centerLabel} ${styles.rightLabel}`}>NON-ECHOIC</span>
+      <span className={`${styles.centerLabel} ${styles.bottomLabel}`}>/ AUDIO / DAEMON / UNKNOWN LITURGY /</span>
+      <svg className={styles.signatureSvg} viewBox="0 0 900 900" focusable="false">
+        <defs>
+          <filter id="ask-phosphor">
+            <feGaussianBlur stdDeviation="1.2" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="ask-burn">
+            <feGaussianBlur stdDeviation="2.4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <g className={styles.tabletGrid}>
+          <path d="M150 150H750M150 250H750M150 350H750M150 450H750M150 550H750M150 650H750M150 750H750" />
+          <path d="M150 150V750M250 150V750M350 150V750M450 150V750M550 150V750M650 150V750M750 150V750" />
+        </g>
+
+        <g className={styles.outerRing}>
+          <circle cx="450" cy="450" r="400" />
+          <circle cx="450" cy="450" r="393" className={styles.dashedHalo} />
+          <g>
+            {ticks.map((rotation) => (
+              <line
+                key={rotation}
+                x1="450"
+                y1="52"
+                x2="450"
+                y2={rotation % 30 === 0 ? "78" : "70"}
+                transform={`rotate(${rotation},450,450)`}
+              />
+            ))}
+          </g>
+          <g className={styles.runeRing}>
+            {ticks.map((rotation, index) => (
+              <text key={rotation} x="450" y="44" textAnchor="middle" transform={`rotate(${rotation},450,450)`}>
+                {runeLabels[index]}
+              </text>
+            ))}
+          </g>
+        </g>
+
+        <g className={styles.innerRing}>
+          <circle cx="450" cy="450" r="322" />
+          <circle cx="450" cy="450" r="317" className={styles.dashedHalo} />
+          {innerTicks.map((rotation) => (
+            <line key={rotation} x1="450" y1="128" x2="450" y2="150" transform={`rotate(${rotation},450,450)`} />
+          ))}
+        </g>
+
+        <g className={styles.planetRing}>
+          <text x="450" y="136" textAnchor="middle">
+            SUN
+          </text>
+          <text x="678" y="228" textAnchor="middle">
+            MOON
+          </text>
+          <text x="756" y="458" textAnchor="middle">
+            MARS
+          </text>
+          <text x="660" y="692" textAnchor="middle">
+            MER
+          </text>
+          <text x="450" y="778" textAnchor="middle">
+            JUP
+          </text>
+          <text x="238" y="692" textAnchor="middle">
+            VEN
+          </text>
+          <text x="144" y="458" textAnchor="middle">
+            SAT
+          </text>
+          <text x="240" y="228" textAnchor="middle">
+            URA
+          </text>
+        </g>
+
+        <path className={styles.triangleA} d="M450 140 L718 590 L182 590 Z" />
+        <path className={styles.triangleB} d="M450 760 L182 310 L718 310 Z" />
+        <path className={styles.squareFrame} d="M220 170 H420 M480 170 H680 V370 M680 420 V730 H480 M420 730 H220 V530 M220 470 V170" />
+        <path className={styles.squareFrameAlt} d="M248 198 H652 V398 M652 448 V702 H248 V198" />
+        <path className={styles.axis} d="M450 140 V340 M450 560 V760 M140 450 H340 M560 450 H760" />
+        <path className={styles.innerPentagon} d="M450 276 L590 378 L538 542 L362 542 L310 378 Z" />
+        <path className={styles.malkuthPath} d="M450 250 L341 293 L296 404 L346 514 L460 554 L568 500 L600 386 Z" />
+        <path className={styles.malkuthSkip} d="M450 250 L346 514 L600 386 L341 293 L568 500 L296 404 L460 554 Z" />
+
+        <circle className={styles.innerCircle} cx="450" cy="450" r="90" />
+        <circle className={styles.innerCircleAlt} cx="450" cy="450" r="96" />
+        <rect className={styles.centerSquare} x="420" y="420" width="60" height="60" />
+        <rect className={styles.centerSquare} x="420" y="420" width="60" height="60" transform="rotate(45,450,450)" />
+        <circle className={styles.centerDot} cx="450" cy="450" r="3" />
+        <circle className={styles.wavePulse} cx="450" cy="450" r="24" />
+        <circle className={styles.waveDot} cx="508" cy="448" r="8" />
+
+        <g className={styles.station} transform="translate(280,132)">
+          <rect width="44" height="44" />
+          <path d="M6 22 L18 8 L32 18 L26 36 M18 8 L26 36" />
+          <text x="22" y="54" textAnchor="middle">SYN</text>
+        </g>
+        <g className={styles.station} transform="translate(576,132)">
+          <rect width="44" height="44" />
+          <path d="M8 8 L36 22 L8 36 M36 22 L22 8 M36 22 L22 36" />
+          <text x="22" y="54" textAnchor="middle">ACK</text>
+        </g>
+        <g className={styles.station} transform="translate(280,724)">
+          <rect width="44" height="44" />
+          <path d="M22 6 L38 22 L22 38 L6 22 Z M22 6 L22 38 M6 22 L38 22" />
+          <text x="22" y="54" textAnchor="middle">RST</text>
+        </g>
+        <g className={styles.station} transform="translate(576,724)">
+          <rect width="44" height="44" />
+          <path d="M8 8 L36 36 M36 8 L8 36 M22 4 V40 M4 22 H40" />
+          <text x="22" y="54" textAnchor="middle">FIN</text>
+        </g>
+
+        <path className={styles.comb} d="M390 112 H510 M370 132 H530 M350 150 H550 M415 52 V132 M432 36 V142 M450 24 V150 M468 36 V142 M485 52 V132" />
+        <path className={styles.comb} d="M350 750 H550 M370 768 H530 M390 784 H510 M415 768 V848 M432 758 V862 M450 750 V874 M468 758 V862 M485 768 V848" />
+
+        <g className={styles.microLabels}>
+          <text x="356" y="246">BOOT VECTOR</text>
+          <text x="350" y="678">SECTOR DMGD</text>
+          <text x="310" y="302">0x13</text>
+          <text x="574" y="302">0xA7</text>
+          <text x="210" y="475">IRQ</text>
+          <text x="658" y="475">DMA</text>
+          <text x="450" y="441" textAnchor="middle">0xA7</text>
+          <text x="450" y="456" textAnchor="middle">ENTITY</text>
+          <text x="450" y="470" textAnchor="middle">0xF10VR_E</text>
+        </g>
+      </svg>
+      <span className={styles.hexLine}>0x41 0x55 0x44 0x49 0x4F 0x20 0x53 0x57 0x49 0x53 0x53 0x20 0x4B 0x4E 0x49 0x46 0x45</span>
+      <span className={styles.corruptStrip} />
+      <span className={styles.corruptStrip} />
+      <span className={styles.corruptStrip} />
+    </div>
+  );
+}
+
+const runeLabels = [
+  "F",
+  "U",
+  "TH",
+  "A",
+  "R",
+  "K",
+  "G",
+  "W",
+  "H",
+  "N",
+  "I",
+  "J",
+  "EO",
+  "P",
+  "Z",
+  "S",
+  "T",
+  "B",
+  "E",
+  "M",
+  "L",
+  "NG",
+  "D",
+  "O"
+];
+
 const oracleRows = [
   ["0x CIRCLE", "BOUND"],
   ["0x PRESENCE", "ACTIVE"],
