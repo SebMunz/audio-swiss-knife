@@ -20,6 +20,14 @@
 - La logica matematica debe vivir en `lib/`, separada de React.
 - Persistencia local con IndexedDB mediante `idb`.
 
+## Ramas y flujo de trabajo
+
+- `main`/`master` es productivo.
+- `feature/acustica`, `feature/senal`, `feature/musica`, `feature/masterizacion` y `feature/codecs` son ramas paraguas por caja de herramientas.
+- Cada herramienta debe trabajarse en su propia rama `feature/<tool-id>` desde la rama paraguas correspondiente.
+- Los commits deben usar nomenclatura clasica: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:` o equivalente.
+- Mantener commits separados cuando haya cambios de naturaleza distinta, por ejemplo documentacion de flujo y cambios de UI.
+
 ## Calidad de calculos
 
 - Documentar supuestos y unidades.
