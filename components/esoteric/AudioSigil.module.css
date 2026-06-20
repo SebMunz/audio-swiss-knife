@@ -9,7 +9,8 @@
 .rail,
 .bottomBar,
 .dataDeck,
-.signatureSeal {
+.signatureSeal,
+.toolRune {
   display: none;
 }
 
@@ -111,14 +112,27 @@
 
 :root[data-visual-mode="corrupted"] .signatureSeal {
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   inset: 88px 238px 18px var(--sidebar-width);
   display: grid;
   place-items: center;
   pointer-events: none;
-  opacity: 0.58;
+  opacity: 0;
   mix-blend-mode: screen;
   overflow: hidden;
+  animation: signatureInvoke 760ms steps(5, end) 80ms forwards;
+}
+
+:root[data-visual-mode="corrupted"] .scopeHome {
+  opacity: 0;
+}
+
+:root[data-visual-mode="corrupted"] .scopeCategory {
+  opacity: 0;
+}
+
+:root[data-visual-mode="corrupted"] .scopeTool {
+  opacity: 0;
 }
 
 :root[data-visual-mode="corrupted"] .signatureSeal::before,
@@ -129,7 +143,7 @@
 }
 
 :root[data-visual-mode="corrupted"] .signatureSeal::before {
-  inset: 9% 6%;
+  inset: 6% 4%;
   border: 1px solid rgba(30, 36, 24, 0.52);
   background:
     radial-gradient(ellipse 48% 52% at 50% 50%, rgba(122, 144, 96, 0.06), transparent 70%),
@@ -147,13 +161,28 @@
 :root[data-visual-mode="corrupted"] .signatureSvg {
   position: relative;
   z-index: 1;
-  width: min(70vh, 58vw);
-  max-width: 760px;
+  width: min(78vh, 66vw);
+  max-width: 860px;
   min-width: 460px;
   height: auto;
   overflow: visible;
   filter: drop-shadow(0 0 8px rgba(122, 144, 96, 0.14));
   animation: signatureFloat 20s ease-in-out infinite;
+}
+
+:root[data-visual-mode="corrupted"] .scopeHome .signatureSvg {
+  width: min(84vh, 70vw);
+  max-width: 940px;
+}
+
+:root[data-visual-mode="corrupted"] .scopeCategory .signatureSvg {
+  width: min(76vh, 63vw);
+  max-width: 820px;
+}
+
+:root[data-visual-mode="corrupted"] .scopeTool .signatureSvg {
+  width: min(70vh, 58vw);
+  max-width: 760px;
 }
 
 :root[data-visual-mode="corrupted"] .tabletGrid {
@@ -199,6 +228,85 @@
   font-family: var(--font-mono);
   font-size: 13px;
   filter: url("#ask-burn");
+}
+
+:root[data-visual-mode="corrupted"] .categoryConstellation circle,
+:root[data-visual-mode="corrupted"] .toolConstellation circle {
+  fill: rgba(4, 5, 3, 0.5);
+  stroke-width: 1;
+}
+
+:root[data-visual-mode="corrupted"] .categoryConstellation {
+  fill: rgba(226, 153, 48, 0.68);
+  stroke: rgba(154, 112, 48, 0.58);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  filter: url("#ask-phosphor");
+  animation: signatureRotate 112s linear infinite reverse;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+:root[data-visual-mode="corrupted"] .categoryConstellation path {
+  fill: none;
+  stroke-width: 1.2;
+}
+
+:root[data-visual-mode="corrupted"] .toolConstellation {
+  fill: rgba(122, 144, 96, 0.62);
+  stroke: rgba(122, 144, 96, 0.52);
+  filter: url("#ask-phosphor");
+}
+
+:root[data-visual-mode="corrupted"] .toolConstellation path {
+  fill: none;
+  stroke-width: 1.1;
+}
+
+:root[data-visual-mode="corrupted"] .toolConstellation text {
+  fill: rgba(226, 153, 48, 0.76);
+  stroke: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+:root[data-visual-mode="corrupted"] .activeToolRune {
+  fill: rgba(204, 0, 0, 0.38);
+  stroke: rgba(204, 0, 0, 0.78);
+}
+
+:root[data-visual-mode="corrupted"] .activeToolRune circle {
+  stroke-width: 1.5;
+}
+
+:root[data-visual-mode="corrupted"] .scopeAcustica .triangleA,
+:root[data-visual-mode="corrupted"] .scopeAcustica .innerPentagon,
+:root[data-visual-mode="corrupted"] .scopeAcustica .toolConstellation {
+  stroke: rgba(122, 144, 96, 0.7);
+}
+
+:root[data-visual-mode="corrupted"] .scopeSenal .triangleA,
+:root[data-visual-mode="corrupted"] .scopeSenal .innerPentagon,
+:root[data-visual-mode="corrupted"] .scopeSenal .toolConstellation {
+  stroke: rgba(58, 90, 84, 0.72);
+}
+
+:root[data-visual-mode="corrupted"] .scopeMusica .triangleA,
+:root[data-visual-mode="corrupted"] .scopeMusica .innerPentagon,
+:root[data-visual-mode="corrupted"] .scopeMusica .toolConstellation {
+  stroke: rgba(166, 111, 28, 0.74);
+}
+
+:root[data-visual-mode="corrupted"] .scopeMasterizacion .triangleA,
+:root[data-visual-mode="corrupted"] .scopeMasterizacion .innerPentagon,
+:root[data-visual-mode="corrupted"] .scopeMasterizacion .toolConstellation {
+  stroke: rgba(176, 120, 48, 0.78);
+}
+
+:root[data-visual-mode="corrupted"] .scopeCodecs .triangleA,
+:root[data-visual-mode="corrupted"] .scopeCodecs .innerPentagon,
+:root[data-visual-mode="corrupted"] .scopeCodecs .toolConstellation {
+  stroke: rgba(160, 40, 32, 0.58);
 }
 
 :root[data-visual-mode="corrupted"] .triangleA,
@@ -378,6 +486,22 @@
 
 :root[data-visual-mode="corrupted"] .corruptStrip:nth-last-child(1) {
   animation-delay: -11s;
+}
+
+:root[data-visual-mode="corrupted"] .toolRune {
+  display: block;
+}
+
+:root[data-visual-mode="corrupted"] .toolRune circle,
+:root[data-visual-mode="corrupted"] .toolRune path {
+  fill: none;
+  stroke: rgba(154, 112, 48, 0.58);
+  stroke-width: 1.4;
+}
+
+:root[data-visual-mode="corrupted"] .toolRune circle:last-child {
+  fill: rgba(204, 0, 0, 0.45);
+  stroke: none;
 }
 
 :root[data-visual-mode="corrupted"] .rail {
@@ -673,7 +797,6 @@
 @media (max-width: 860px) {
   :root[data-visual-mode="corrupted"] .signatureSeal {
     inset: 170px 0 18px 0;
-    opacity: 0.42;
   }
 
   :root[data-visual-mode="corrupted"] .signatureSvg {
@@ -694,7 +817,7 @@
   }
 
   :root[data-visual-mode="corrupted"] .signatureSeal {
-    opacity: 0.32;
+    animation-name: signatureInvokeMobile;
   }
 
   :root[data-visual-mode="corrupted"] .centerLabel,
@@ -710,6 +833,43 @@
   }
   50% {
     transform: rotate(0.3deg) translateY(-4px);
+  }
+}
+
+@keyframes signatureInvoke {
+  0% {
+    opacity: 0;
+    filter: contrast(2.2) brightness(1.4);
+    transform: scale(0.98);
+  }
+  28% {
+    opacity: 0.72;
+  }
+  46% {
+    opacity: 0.22;
+    transform: scale(1.006);
+  }
+  64% {
+    opacity: 0.58;
+  }
+  100% {
+    opacity: 0.42;
+    filter: contrast(1) brightness(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes signatureInvokeMobile {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  42% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.28;
+    transform: scale(1);
   }
 }
 
@@ -762,6 +922,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   :root[data-visual-mode="corrupted"] .signatureSvg,
+  :root[data-visual-mode="corrupted"] .signatureSeal,
+  :root[data-visual-mode="corrupted"] .categoryConstellation,
   :root[data-visual-mode="corrupted"] .outerRing,
   :root[data-visual-mode="corrupted"] .innerRing,
   :root[data-visual-mode="corrupted"] .wavePulse,

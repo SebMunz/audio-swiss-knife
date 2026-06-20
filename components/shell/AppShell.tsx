@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { categories, tools } from "@/data/tools";
+import { categories, getToolById, tools, type ToolCategory } from "@/data/tools";
 import {
   AudioSigil,
   CorruptedBottomBar,
@@ -16,8 +16,14 @@ import styles from "./AppShell.module.css";
 
 export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname();
+  const normalizedPathname = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
   const [query, setQuery] = useState("");
   const { sidebarCollapsed, toggleSidebar, visualMode, toggleVisualMode } = useUiStore();
+  const toolMatch = normalizedPathname.match(/^\/tools\/([^/]+)/);
+  const activeTool = toolMatch ? getToolById(toolMatch[1]) : undefined;
+  const routeCategory = categories.find((category) => normalizedPathname === `/${category.id}`)?.id;
+  const sealScope = normalizedPathname === "/" ? "home" : activeTool ? "tool" : "category";
+  const sealCategory = (activeTool?.category ?? routeCategory) as ToolCategory | undefined;
 
   useEffect(() => {
     document.documentElement.dataset.visualMode = visualMode;
@@ -65,7 +71,7 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
         <nav className={styles.navList}>
           {categories.map((category) => {
             const href = `/${category.id}`;
-            const active = pathname === href;
+            const active = normalizedPathname === href;
 
             return (
               <Link key={category.id} href={href} className={`${styles.navItem} ${active ? styles.active : ""}`}>
@@ -95,11 +101,11 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
       </aside>
 
       <div className={styles.workspace}>
-        <CorruptedSignatureSeal />
+        <CorruptedSignatureSeal scope={sealScope} categoryId={sealCategory} toolId={activeTool?.id} />
         <header className={styles.topbar}>
           <div>
             <p className={styles.kicker}>Client-side audio toolkit</p>
-            <h1>{pathname === "/" ? "Home" : pathname.replace("/", "")}</h1>
+            <h1>{normalizedPathname === "/" ? "Home" : normalizedPathname.replace("/", "")}</h1>
           </div>
           <label className={styles.searchBox}>
             <span>Buscar</span>
