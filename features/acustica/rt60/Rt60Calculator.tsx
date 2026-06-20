@@ -40,6 +40,7 @@ export default function Rt60Calculator({ tool }: Readonly<{ tool: ToolDefinition
   const [width, setWidth] = useState(4.2);
   const [height, setHeight] = useState(2.7);
   const [materials, setMaterials] = useState(defaultMaterials);
+  const [isTheoryOpen, setIsTheoryOpen] = useState(false);
   const [isGrimoireOpen, setIsGrimoireOpen] = useState(false);
 
   const result = useMemo(() => {
@@ -66,15 +67,26 @@ export default function Rt60Calculator({ tool }: Readonly<{ tool: ToolDefinition
           <h2>{tool.name}</h2>
           <span>{tool.description}</span>
         </div>
-        <button
-          className={styles.grimoireButton}
-          type="button"
-          aria-label="Desvelar grimorio RT60"
-          onClick={() => setIsGrimoireOpen(true)}
-        >
-          <span aria-hidden="true">?</span>
-          <em>[DESVELAR_GRIMORIO]</em>
-        </button>
+        <div className={styles.headerActions}>
+          <button
+            className={styles.theoryButton}
+            type="button"
+            aria-label="Abrir teoria RT60"
+            onClick={() => setIsTheoryOpen(true)}
+          >
+            <span aria-hidden="true">i</span>
+            <em>Teoria</em>
+          </button>
+          <button
+            className={styles.grimoireButton}
+            type="button"
+            aria-label="Desvelar grimorio RT60"
+            onClick={() => setIsGrimoireOpen(true)}
+          >
+            <span aria-hidden="true">?</span>
+            <em>[DESVELAR_GRIMORIO]</em>
+          </button>
+        </div>
         <strong>{tool.status}</strong>
       </header>
 
@@ -195,6 +207,7 @@ export default function Rt60Calculator({ tool }: Readonly<{ tool: ToolDefinition
         </div>
       </section>
 
+      {isTheoryOpen ? <Rt60TheoryModal result={result} onClose={() => setIsTheoryOpen(false)} /> : null}
       {isGrimoireOpen ? <Rt60GrimoireModal result={result} onClose={() => setIsGrimoireOpen(false)} /> : null}
     </article>
   );
@@ -235,6 +248,70 @@ function Metric({ label, value }: Readonly<{ label: string; value: string }>) {
     <div className={styles.metric}>
       <span>{label}</span>
       <strong>{value}</strong>
+    </div>
+  );
+}
+
+function Rt60TheoryModal({ result, onClose }: Readonly<{ result: Rt60Result; onClose: () => void }>) {
+  return (
+    <div className={styles.theoryOverlay} role="dialog" aria-modal="true" aria-labelledby="rt60-theory-title">
+      <section className={styles.theoryModal}>
+        <header className={styles.theoryChrome}>
+          <div>
+            <p>Acustica de sala</p>
+            <h3 id="rt60-theory-title">Teoria RT60</h3>
+          </div>
+          <button type="button" onClick={onClose}>
+            Cerrar
+          </button>
+        </header>
+
+        <div className={styles.theoryContent}>
+          <div>
+            <h4>Que mide</h4>
+            <p>
+              RT60 estima el tiempo que tarda el campo reverberante de una sala en decaer 60 dB despues de detener la
+              fuente sonora. Es una referencia practica para evaluar si un recinto esta demasiado vivo, demasiado seco o
+              cerca del objetivo esperado para escucha critica.
+            </p>
+          </div>
+
+          <div>
+            <h4>Sabine</h4>
+            <p>
+              Sabine usa el volumen de la sala y el area de absorcion equivalente. Funciona mejor cuando la absorcion
+              media es baja o moderada y el campo sonoro puede asumirse relativamente difuso.
+            </p>
+            <code>RT60 = 0.161 * V / A</code>
+          </div>
+
+          <div>
+            <h4>Eyring</h4>
+            <p>
+              Eyring corrige el calculo cuando la absorcion promedio sube. Suele ser mas estable para salas con
+              tratamiento acustico significativo, porque considera el termino logaritmico del coeficiente medio.
+            </p>
+            <code>RT60 = 0.161 * V / (-S * ln(1 - alpha))</code>
+          </div>
+
+          <dl className={styles.theoryStats}>
+            <div>
+              <dt>Volumen actual</dt>
+              <dd>{result.volume.toFixed(1)} m3</dd>
+            </div>
+            <div>
+              <dt>RT60 medio</dt>
+              <dd>{formatSeconds(result.midEyring ?? result.midSabine)}</dd>
+            </div>
+            <div>
+              <dt>Rango objetivo</dt>
+              <dd>
+                {result.targetRange.min.toFixed(2)} - {result.targetRange.max.toFixed(2)} s
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
     </div>
   );
 }
