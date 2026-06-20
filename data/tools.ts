@@ -73,7 +73,7 @@ const tool = (
 });
 
 export const tools: ToolDefinition[] = [
-  tool("rt60", "acustica", "Calculadora RT60", "Tiempo de reverberacion con Sabine y Eyring.", ["sabine", "eyring", "room"], ["Volumen", "Superficies", "Coeficientes"], "prototype"),
+  tool("rt60", "acustica", "Calculadora RT60", "Tiempo de reverberacion con Sabine y Eyring.", ["sabine", "eyring", "room"], ["Dimensiones", "Materiales", "Coeficientes"], "prototype"),
   tool("c50-c80", "acustica", "Calculadora C50/C80", "Claridad musical y de habla a partir de energia temprana/tardia.", ["claridad", "speech", "music"], ["Energia temprana", "Energia tardia"]),
   tool("sti", "acustica", "Calculadora STI", "Estimador de inteligibilidad para salas y sistemas de refuerzo.", ["speech", "intelligibility"], ["Ruido", "Reverberacion", "Modulacion"]),
   tool("qrd", "acustica", "Calculadora QRD", "Secuencias, profundidad y frecuencia de trabajo para difusores QRD.", ["diffusion", "qrd"], ["Orden", "Frecuencia minima", "Ancho de pozo"], "prototype"),
