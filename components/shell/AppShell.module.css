@@ -266,6 +266,7 @@
 }
 
 .workspace {
+  position: relative;
   min-width: 0;
 }
 
@@ -365,6 +366,8 @@
 }
 
 .searchPanel {
+  position: relative;
+  z-index: 3;
   margin: 18px 26px 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -410,6 +413,8 @@
 }
 
 .main {
+  position: relative;
+  z-index: 2;
   padding: 26px;
 }
 
