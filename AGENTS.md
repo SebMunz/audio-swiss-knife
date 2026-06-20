@@ -23,7 +23,8 @@
 ## Ramas y flujo de trabajo
 
 - `main`/`master` es productivo.
-- `feature/acustica`, `feature/senal`, `feature/musica`, `feature/masterizacion` y `feature/codecs` son ramas paraguas por caja de herramientas.
+- `feature/dev` es la rama de integracion previa a productivo; ahi convergen las ramas de categoria antes de abrir PR hacia `main`/`master`.
+- `feature/acustica`, `feature/senal`, `feature/musica`, `feature/masterizacion` y `feature/codecs` son ramas paraguas por caja de herramientas y deben integrarse primero en `feature/dev`.
 - Cada herramienta debe trabajarse en su propia rama `feature/<tool-id>` desde la rama paraguas correspondiente.
 - Los commits deben usar nomenclatura clasica: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:` o equivalente.
 - Mantener commits separados cuando haya cambios de naturaleza distinta, por ejemplo documentacion de flujo y cambios de UI.
