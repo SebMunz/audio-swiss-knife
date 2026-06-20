@@ -59,6 +59,46 @@
   font-size: 12px;
 }
 
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theoryButton {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  color: var(--accent-strong);
+  background: var(--panel-soft);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.theoryButton span {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-style: normal;
+}
+
+.theoryButton em {
+  color: var(--text);
+  font-style: normal;
+}
+
+.theoryButton:hover {
+  border-color: var(--accent-strong);
+  transform: translateY(-1px);
+}
+
 .grimoireButton {
   display: none;
 }
@@ -259,6 +299,10 @@
   box-shadow: inset 5px 0 0 rgba(204, 0, 0, 0.55);
 }
 
+:root[data-visual-mode="corrupted"] .theoryButton {
+  display: none;
+}
+
 :root[data-visual-mode="corrupted"] .header::before {
   content: "MBR_RT60 // BLACK_BIOS_RING0 // CHECKSUM_OK";
   position: absolute;
@@ -354,6 +398,122 @@
     repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.26) 0 1px, transparent 1px 4px),
     rgba(0, 0, 0, 0.82);
   backdrop-filter: blur(2px);
+}
+
+.theoryOverlay {
+  position: fixed;
+  z-index: 250;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(5, 8, 8, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.theoryModal {
+  width: min(900px, 100%);
+  max-height: min(720px, 92vh);
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.theoryChrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel-strong);
+}
+
+.theoryChrome p {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.theoryChrome h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+}
+
+.theoryChrome button {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  color: var(--text);
+  background: var(--panel-soft);
+}
+
+.theoryContent {
+  display: grid;
+  gap: 18px;
+  padding: 20px;
+}
+
+.theoryContent h4 {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+
+.theoryContent p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.theoryContent code {
+  display: inline-block;
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  color: var(--accent-strong);
+  background: var(--panel-soft);
+  font-family: var(--font-mono);
+  white-space: normal;
+}
+
+.theoryStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.theoryStats div {
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: var(--panel-soft);
+}
+
+.theoryStats dt {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.theoryStats dd {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+:root[data-visual-mode="corrupted"] .theoryOverlay {
+  display: none;
 }
 
 .grimoireModal {
@@ -523,11 +683,35 @@
     justify-content: start;
   }
 
+  .headerActions {
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .theoryButton {
+    width: 100%;
+    justify-content: start;
+  }
+
   .dimensionGrid,
   .materials,
   .statGrid,
   .equationGrid,
   .liveVariables {
+    grid-template-columns: 1fr;
+  }
+
+  .theoryOverlay {
+    padding: 12px;
+  }
+
+  .theoryChrome {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .theoryStats {
     grid-template-columns: 1fr;
   }
 
