@@ -82,7 +82,7 @@ export const tools: ToolDefinition[] = [
   tool("tl-stc", "acustica", "TL/STC Aislamiento", "Perdida por transmision y estimacion STC.", ["isolation", "stc"], ["Masa", "Frecuencia", "Capas"]),
   tool("sbir", "acustica", "SBIR", "Interferencia por limites y cancelaciones por distancia.", ["speaker", "boundary"], ["Distancia a muro", "Velocidad sonido"]),
   tool("monitor-placement", "acustica", "Ubicador Monitores/Sub", "Puntos iniciales para monitores, subwoofer y posicion de escucha.", ["studio", "subwoofer"], ["Dimensiones", "Posicion escucha"]),
-  tool("eq-q-bw", "senal", "Filtros EQ Q/BW", "Conversion entre Q, bandwidth y octavas.", ["eq", "filter"], ["Q", "Bandwidth", "Frecuencia"]),
+  tool("eq-q-bw", "senal", "Filtros EQ Q/BW", "Conversion entre Q, bandwidth y octavas.", ["eq", "filter"], ["Q", "Bandwidth", "Frecuencia"], "prototype"),
   tool("delay-distance", "senal", "Delay ms/metros", "Conversor entre tiempo, distancia y samples.", ["delay", "distance"], ["Milisegundos", "Metros", "Temperatura"], "prototype"),
   tool("phase", "senal", "Calculadora de Fase", "Fase en grados/radianes por frecuencia y delay.", ["phase", "delay"], ["Frecuencia", "Delay"]),
   tool("audio-units", "senal", "Unidades Audio", "Conversion entre dBu, dBV, dBFS y dBSPL.", ["db", "units"], ["Referencia", "Nivel"]),
