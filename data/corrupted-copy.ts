@@ -65,6 +65,14 @@ const toolCopy: Record<string, CorruptedCopy> = {
     title: "Sincronia del Vector",
     description: "Alineacion espiritual entre frecuencia, delay y desplazamiento angular."
   },
+  "delay-distance": {
+    title: "Deriva Temporal",
+    description: "Convierte distancia, milisegundos y samples para sellar desfases entre nodos fisicos."
+  },
+  "eq-q-bw": {
+    title: "Sello de Ancho Espectral",
+    description: "Traduce Q y octavas para trazar filtros sin romper el circulo de fase."
+  },
   lufs: {
     title: "Peso de la Ofrenda",
     description: "Lectura de loudness antes de inyectar el manifiesto en plataformas."
