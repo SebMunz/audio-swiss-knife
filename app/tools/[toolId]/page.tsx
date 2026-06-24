@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getToolById, tools } from "@/data/tools";
 import Rt60Calculator from "@/features/acustica/rt60/Rt60Calculator";
+import DelayDistanceCalculator from "@/features/senal/delay-distance/DelayDistanceCalculator";
 import PlaceholderTool from "@/features/placeholder-tool/PlaceholderTool";
 
 export function generateStaticParams() {
@@ -18,6 +19,10 @@ export default function ToolPage({ params }: Readonly<{ params: { toolId: string
 
   if (tool.id === "rt60") {
     return <Rt60Calculator tool={tool} />;
+  }
+
+  if (tool.id === "delay-distance") {
+    return <DelayDistanceCalculator tool={tool} />;
   }
 
   return <PlaceholderTool tool={tool} />;
