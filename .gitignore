@@ -4,6 +4,14 @@ out
 out/
 dist
 build
+
+# local agent/codex instructions
+AGENTS.md
+.agents/
+.codex/
+.codex-*
+codex-*
+
 .env
 .env.local
 .env.*.local
