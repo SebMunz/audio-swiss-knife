@@ -1,4 +1,5 @@
 import styles from "./AudioSigil.module.css";
+import { categories, getToolById, getToolsByCategory, type ToolCategory } from "@/data/tools";
 
 type AudioSigilProps = {
   variant?: "seal" | "small";
@@ -55,16 +56,30 @@ export function RuneStrip({ compact = false }: Readonly<{ compact?: boolean }>) 
   );
 }
 
-export function CorruptedSignatureSeal() {
+type CorruptedSignatureSealProps = {
+  scope?: "home" | "category" | "tool";
+  categoryId?: ToolCategory;
+  toolId?: string;
+};
+
+export function CorruptedSignatureSeal({
+  scope = "home",
+  categoryId,
+  toolId
+}: Readonly<CorruptedSignatureSealProps>) {
   const ticks = Array.from({ length: 24 }, (_, index) => index * 15);
   const innerTicks = Array.from({ length: 12 }, (_, index) => index * 30);
+  const activeTool = toolId ? getToolById(toolId) : undefined;
+  const activeCategoryId = categoryId ?? activeTool?.category;
+  const categoryTools = activeCategoryId ? getToolsByCategory(activeCategoryId) : [];
+  const categoryClass = activeCategoryId ? styles[`scope${capitalize(activeCategoryId)}`] : "";
 
   return (
-    <div className={styles.signatureSeal} aria-hidden="true">
-      <span className={`${styles.centerLabel} ${styles.topLabel}`}>[MALKUTH://AUDIO_SOCKET]</span>
-      <span className={`${styles.centerLabel} ${styles.leftLabel}`}>PORTAL A-13</span>
-      <span className={`${styles.centerLabel} ${styles.rightLabel}`}>NON-ECHOIC</span>
-      <span className={`${styles.centerLabel} ${styles.bottomLabel}`}>/ AUDIO / DAEMON / UNKNOWN LITURGY /</span>
+    <div className={`${styles.signatureSeal} ${styles[`scope${capitalize(scope)}`]} ${categoryClass}`} aria-hidden="true">
+      <span className={`${styles.centerLabel} ${styles.topLabel}`}>{getSealTopLabel(scope, activeCategoryId, toolId)}</span>
+      <span className={`${styles.centerLabel} ${styles.leftLabel}`}>{scope === "home" ? "PORTAL A-13" : "CATEGORY SOCKET"}</span>
+      <span className={`${styles.centerLabel} ${styles.rightLabel}`}>{scope === "tool" ? "TOOL SIGIL" : "NON-ECHOIC"}</span>
+      <span className={`${styles.centerLabel} ${styles.bottomLabel}`}>{getSealBottomLabel(scope, activeCategoryId)}</span>
       <svg className={styles.signatureSvg} viewBox="0 0 900 900" focusable="false">
         <defs>
           <filter id="ask-phosphor">
@@ -148,6 +163,49 @@ export function CorruptedSignatureSeal() {
           </text>
         </g>
 
+        {scope === "home" ? (
+          <g className={styles.categoryConstellation}>
+            {categories.map((category, index) => {
+              const point = orbitPoint(index, categories.length, 262);
+
+              return (
+                <g key={category.id} transform={`translate(${point.x},${point.y})`}>
+                  <circle r="34" />
+                  <path d={categorySealPath(category.id)} />
+                  <text y="4" textAnchor="middle">
+                    {category.shortName.toUpperCase()}
+                  </text>
+                </g>
+              );
+            })}
+          </g>
+        ) : null}
+
+        {activeCategoryId ? (
+          <g className={styles.toolConstellation}>
+            {categoryTools.map((tool, index) => {
+              const point = orbitPoint(index, categoryTools.length, scope === "tool" ? 210 : 238);
+              const active = tool.id === toolId;
+
+              return (
+                <g
+                  key={tool.id}
+                  className={active ? styles.activeToolRune : ""}
+                  transform={`translate(${point.x},${point.y})`}
+                >
+                  <circle r={active ? "18" : "12"} />
+                  <path d={toolRunePath(tool.id)} />
+                  {active ? (
+                    <text y="35" textAnchor="middle">
+                      {tool.id.toUpperCase()}
+                    </text>
+                  ) : null}
+                </g>
+              );
+            })}
+          </g>
+        ) : null}
+
         <path className={styles.triangleA} d="M450 140 L718 590 L182 590 Z" />
         <path className={styles.triangleB} d="M450 760 L182 310 L718 310 Z" />
         <path className={styles.squareFrame} d="M220 170 H420 M480 170 H680 V370 M680 420 V730 H480 M420 730 H220 V530 M220 470 V170" />
@@ -198,14 +256,24 @@ export function CorruptedSignatureSeal() {
           <text x="658" y="475">DMA</text>
           <text x="450" y="441" textAnchor="middle">0xA7</text>
           <text x="450" y="456" textAnchor="middle">ENTITY</text>
-          <text x="450" y="470" textAnchor="middle">0xF10VR_E</text>
+          <text x="450" y="470" textAnchor="middle">{toolId ? toolId.toUpperCase() : "0xF10VR_E"}</text>
         </g>
       </svg>
-      <span className={styles.hexLine}>0x41 0x55 0x44 0x49 0x4F 0x20 0x53 0x57 0x49 0x53 0x53 0x20 0x4B 0x4E 0x49 0x46 0x45</span>
+      <span className={styles.hexLine}>{getHexLine(scope, activeCategoryId, toolId)}</span>
       <span className={styles.corruptStrip} />
       <span className={styles.corruptStrip} />
       <span className={styles.corruptStrip} />
     </div>
+  );
+}
+
+export function ToolRune({ toolId }: Readonly<{ toolId: string }>) {
+  return (
+    <svg className={styles.toolRune} viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <circle cx="32" cy="32" r="24" />
+      <path d={toolRunePath(toolId)} />
+      <circle cx="32" cy="32" r="3" />
+    </svg>
   );
 }
 
@@ -235,6 +303,78 @@ const runeLabels = [
   "D",
   "O"
 ];
+
+function orbitPoint(index: number, total: number, radius: number) {
+  const angle = -90 + (360 / Math.max(total, 1)) * index;
+  const radians = (angle * Math.PI) / 180;
+
+  return {
+    x: Number((450 + Math.cos(radians) * radius).toFixed(2)),
+    y: Number((450 + Math.sin(radians) * radius).toFixed(2))
+  };
+}
+
+function toolRunePath(toolId: string) {
+  const seed = Array.from(toolId).reduce((total, char) => total + char.charCodeAt(0), 0);
+  const points = Array.from({ length: 5 }, (_, index) => {
+    const angle = -90 + index * 72 + (seed % 31);
+    const radius = index % 2 === 0 ? 24 : 13 + (seed % 5);
+    const radians = (angle * Math.PI) / 180;
+
+    return {
+      x: Number((32 + Math.cos(radians) * radius).toFixed(2)),
+      y: Number((32 + Math.sin(radians) * radius).toFixed(2))
+    };
+  });
+  const [first, ...rest] = points;
+  const stem = seed % 2 === 0 ? "M32 8 L32 56" : "M12 32 L52 32";
+
+  return `${stem} M${first.x} ${first.y} ${rest.map((point) => `L${point.x} ${point.y}`).join(" ")} Z`;
+}
+
+function categorySealPath(categoryId: ToolCategory) {
+  const paths: Record<ToolCategory, string> = {
+    acustica: "M0 -24 L24 18 H-24 Z M-28 0 H28 M0 -28 V28",
+    senal: "M-28 0 C-14 -18 0 -18 14 0 S42 18 56 0 M-20 18 H20 M-20 -18 H20",
+    musica: "M0 -28 C18 -12 18 12 0 28 C-18 12 -18 -12 0 -28 Z M-24 0 H24",
+    masterizacion: "M-24 -24 H24 V24 H-24 Z M-28 0 H28 M0 -28 V28",
+    codecs: "M-26 -16 H10 L26 0 L10 16 H-26 Z M-10 -28 V28 M10 -28 V28"
+  };
+
+  return paths[categoryId];
+}
+
+function capitalize(value: string) {
+  return `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
+}
+
+function getSealTopLabel(scope: string, categoryId?: ToolCategory, toolId?: string) {
+  if (toolId) {
+    return `[TOOL_SIGIL://${toolId.toUpperCase()}]`;
+  }
+
+  if (categoryId) {
+    return `[CATEGORY_SEAL://${categoryId.toUpperCase()}]`;
+  }
+
+  return "[MALKUTH://AUDIO_SOCKET]";
+}
+
+function getSealBottomLabel(scope: string, categoryId?: ToolCategory) {
+  if (scope === "home") {
+    return "/ HOME / CATEGORY SEALS / MASTER CIRCLE /";
+  }
+
+  return `/ ${categoryId?.toUpperCase() ?? "AUDIO"} / TOOL RUNES / NESTED CIRCLE /`;
+}
+
+function getHexLine(scope: string, categoryId?: ToolCategory, toolId?: string) {
+  const source = `${scope}:${categoryId ?? "home"}:${toolId ?? "all"}`.toUpperCase();
+
+  return Array.from(source)
+    .map((char) => `0x${char.charCodeAt(0).toString(16).toUpperCase().padStart(2, "0")}`)
+    .join(" ");
+}
 
 const oracleRows = [
   ["0x CIRCLE", "BOUND"],

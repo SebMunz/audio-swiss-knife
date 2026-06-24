@@ -23,6 +23,7 @@
     repeating-linear-gradient(0deg, rgba(122, 144, 96, 0.018) 0 1px, transparent 1px 16px),
     repeating-linear-gradient(90deg, rgba(154, 112, 48, 0.012) 0 1px, transparent 1px 16px),
     var(--panel);
+  animation: corruptedUiBoot 520ms steps(4, end) 280ms both;
 }
 
 .brandRow {
@@ -293,6 +294,7 @@
   border-bottom-color: var(--wire-strong);
   background: rgba(2, 3, 1, 0.88);
   backdrop-filter: blur(8px);
+  animation: corruptedUiBoot 520ms steps(4, end) 320ms both;
 }
 
 :root[data-visual-mode="corrupted"] .topbar::after {
@@ -420,6 +422,7 @@
 
 :root[data-visual-mode="corrupted"] .main {
   padding: 14px 14px 28px;
+  animation: corruptedUiBoot 620ms steps(5, end) 380ms both;
 }
 
 .shellCollapsed .brandText,
@@ -465,6 +468,31 @@
   93% {
     clip-path: none;
     transform: none;
+  }
+}
+
+@keyframes corruptedUiBoot {
+  0% {
+    opacity: 0;
+    filter: contrast(1.8) brightness(1.2);
+    transform: translateY(3px);
+  }
+  45% {
+    opacity: 0.7;
+    transform: translateY(-1px);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-visual-mode="corrupted"] .sidebar,
+  :root[data-visual-mode="corrupted"] .topbar,
+  :root[data-visual-mode="corrupted"] .main {
+    animation: none;
   }
 }
 
