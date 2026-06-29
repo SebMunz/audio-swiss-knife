@@ -89,7 +89,7 @@ export const tools: ToolDefinition[] = [
   tool("snr", "senal", "SNR", "Relacion senal-ruido y margen util.", ["noise", "snr"], ["Nivel senal", "Nivel ruido"]),
   tool("thdn", "senal", "THD+N", "Distorsion total mas ruido en porcentaje y dB.", ["distortion", "noise"], ["Fundamental", "Armonicos", "Ruido"]),
   tool("gain-staging", "senal", "Gain Staging", "Headroom dinamico y niveles por etapa.", ["gain", "headroom"], ["Nivel entrada", "Ganancia", "Headroom"]),
-  tool("latency", "senal", "Latencia Samples/ms", "Conversion entre samples, milisegundos y sample rate.", ["latency", "samples"], ["Samples", "Sample rate"]),
+  tool("latency", "senal", "Latencia Samples/ms", "Conversion entre samples, milisegundos y sample rate.", ["latency", "samples"], ["Samples", "Sample rate"], "prototype"),
   tool("crossover", "senal", "Crossover", "Frecuencias de corte y pendientes para vias.", ["speaker", "crossover"], ["Drivers", "Pendiente", "Frecuencia"]),
   tool("speaker-box", "senal", "Cajas Acusticas", "Aproximacion inicial sealed/ported.", ["speaker", "enclosure"], ["Parametros T/S", "Volumen"]),
   tool("directivity", "senal", "Directividad", "Estimacion de cobertura por tamano y frecuencia.", ["speaker", "coverage"], ["Diametro", "Frecuencia"]),

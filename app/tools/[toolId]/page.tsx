@@ -3,6 +3,7 @@ import { getToolById, tools } from "@/data/tools";
 import Rt60Calculator from "@/features/acustica/rt60/Rt60Calculator";
 import DelayDistanceCalculator from "@/features/senal/delay-distance/DelayDistanceCalculator";
 import EqQBandwidthCalculator from "@/features/senal/eq-q-bw/EqQBandwidthCalculator";
+import LatencyCalculator from "@/features/senal/latency/LatencyCalculator";
 import PhaseCalculator from "@/features/senal/phase/PhaseCalculator";
 import PlaceholderTool from "@/features/placeholder-tool/PlaceholderTool";
 
@@ -33,6 +34,10 @@ export default function ToolPage({ params }: Readonly<{ params: { toolId: string
 
   if (tool.id === "phase") {
     return <PhaseCalculator tool={tool} />;
+  }
+
+  if (tool.id === "latency") {
+    return <LatencyCalculator tool={tool} />;
   }
 
   return <PlaceholderTool tool={tool} />;
