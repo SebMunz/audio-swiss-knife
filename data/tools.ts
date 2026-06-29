@@ -84,7 +84,7 @@ export const tools: ToolDefinition[] = [
   tool("monitor-placement", "acustica", "Ubicador Monitores/Sub", "Puntos iniciales para monitores, subwoofer y posicion de escucha.", ["studio", "subwoofer"], ["Dimensiones", "Posicion escucha"]),
   tool("eq-q-bw", "senal", "Filtros EQ Q/BW", "Conversion entre Q, bandwidth y octavas.", ["eq", "filter"], ["Q", "Bandwidth", "Frecuencia"], "prototype"),
   tool("delay-distance", "senal", "Delay ms/metros", "Conversor entre tiempo, distancia y samples.", ["delay", "distance"], ["Milisegundos", "Metros", "Temperatura"], "prototype"),
-  tool("phase", "senal", "Calculadora de Fase", "Fase en grados/radianes por frecuencia y delay.", ["phase", "delay"], ["Frecuencia", "Delay"]),
+  tool("phase", "senal", "Calculadora de Fase", "Fase en grados/radianes por frecuencia y delay.", ["phase", "delay"], ["Frecuencia", "Delay"], "prototype"),
   tool("audio-units", "senal", "Unidades Audio", "Conversion entre dBu, dBV, dBFS y dBSPL.", ["db", "units"], ["Referencia", "Nivel"]),
   tool("snr", "senal", "SNR", "Relacion senal-ruido y margen util.", ["noise", "snr"], ["Nivel senal", "Nivel ruido"]),
   tool("thdn", "senal", "THD+N", "Distorsion total mas ruido en porcentaje y dB.", ["distortion", "noise"], ["Fundamental", "Armonicos", "Ruido"]),
