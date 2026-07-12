@@ -77,6 +77,10 @@ const toolCopy: Record<string, CorruptedCopy> = {
     title: "Sello de Ancho Espectral",
     description: "Traduce Q y octavas para trazar filtros sin romper el circulo de fase."
   },
+  "audio-units": {
+    title: "Tabla de Referencias",
+    description: "Cruza voltaje, escala digital y presion sin mezclar dominios impuros."
+  },
   lufs: {
     title: "Peso de la Ofrenda",
     description: "Lectura de loudness antes de inyectar el manifiesto en plataformas."
