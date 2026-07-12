@@ -6,6 +6,7 @@ import DelayDistanceCalculator from "@/features/senal/delay-distance/DelayDistan
 import EqQBandwidthCalculator from "@/features/senal/eq-q-bw/EqQBandwidthCalculator";
 import LatencyCalculator from "@/features/senal/latency/LatencyCalculator";
 import PhaseCalculator from "@/features/senal/phase/PhaseCalculator";
+import SnrCalculator from "@/features/senal/snr/SnrCalculator";
 import PlaceholderTool from "@/features/placeholder-tool/PlaceholderTool";
 
 export function generateStaticParams() {
@@ -43,6 +44,10 @@ export default function ToolPage({ params }: Readonly<{ params: { toolId: string
 
   if (tool.id === "audio-units") {
     return <AudioUnitsCalculator tool={tool} />;
+  }
+
+  if (tool.id === "snr") {
+    return <SnrCalculator tool={tool} />;
   }
 
   return <PlaceholderTool tool={tool} />;

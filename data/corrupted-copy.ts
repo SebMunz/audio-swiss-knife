@@ -81,6 +81,10 @@ const toolCopy: Record<string, CorruptedCopy> = {
     title: "Tabla de Referencias",
     description: "Cruza voltaje, escala digital y presion sin mezclar dominios impuros."
   },
+  snr: {
+    title: "Piso de Ruido",
+    description: "Mide cuanta sombra queda bajo la senal antes de contaminar el bus."
+  },
   lufs: {
     title: "Peso de la Ofrenda",
     description: "Lectura de loudness antes de inyectar el manifiesto en plataformas."
