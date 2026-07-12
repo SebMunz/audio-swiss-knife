@@ -69,9 +69,21 @@ const toolCopy: Record<string, CorruptedCopy> = {
     title: "Deriva Temporal",
     description: "Convierte distancia, milisegundos y samples para sellar desfases entre nodos fisicos."
   },
+  latency: {
+    title: "Reloj de Buffer",
+    description: "Mide espera digital, buffers y retorno del host antes de que el rito pierda sincronía."
+  },
   "eq-q-bw": {
     title: "Sello de Ancho Espectral",
     description: "Traduce Q y octavas para trazar filtros sin romper el circulo de fase."
+  },
+  "audio-units": {
+    title: "Tabla de Referencias",
+    description: "Cruza voltaje, escala digital y presion sin mezclar dominios impuros."
+  },
+  snr: {
+    title: "Piso de Ruido",
+    description: "Mide cuanta sombra queda bajo la senal antes de contaminar el bus."
   },
   lufs: {
     title: "Peso de la Ofrenda",

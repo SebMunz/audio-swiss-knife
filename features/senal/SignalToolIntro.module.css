@@ -1,0 +1,76 @@
+.intro {
+  min-width: 0;
+}
+
+.normalIntro {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.normalIntro div,
+.corruptedIntro {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: var(--panel);
+}
+
+.normalIntro span,
+.corruptedIntro span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.normalIntro p,
+.corruptedIntro p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.corruptedIntro {
+  display: none;
+}
+
+.corruptedIntro div {
+  display: grid;
+  gap: 8px;
+}
+
+:root[data-visual-mode="corrupted"] .normalIntro {
+  display: none;
+}
+
+:root[data-visual-mode="corrupted"] .corruptedIntro {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.24fr) 1fr;
+  gap: 14px;
+  border-color: rgba(166, 111, 28, 0.35);
+  border-radius: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(122, 144, 96, 0.018) 0 1px, transparent 1px 14px),
+    repeating-linear-gradient(90deg, rgba(166, 111, 28, 0.016) 0 1px, transparent 1px 18px),
+    rgba(3, 4, 2, 0.78);
+  font-family: var(--font-mono);
+}
+
+:root[data-visual-mode="corrupted"] .corruptedIntro span {
+  margin: 0;
+  color: var(--danger);
+}
+
+:root[data-visual-mode="corrupted"] .corruptedIntro p {
+  color: var(--accent-strong);
+}
+
+@media (max-width: 760px) {
+  .normalIntro,
+  :root[data-visual-mode="corrupted"] .corruptedIntro {
+    grid-template-columns: 1fr;
+  }
+}
