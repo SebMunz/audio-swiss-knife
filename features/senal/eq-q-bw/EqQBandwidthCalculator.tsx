@@ -8,6 +8,7 @@ import {
   formatFrequency,
   type EqInputMode
 } from "@/lib/signal/eq-q-bw";
+import SignalToolIntro from "@/features/senal/SignalToolIntro";
 import styles from "./EqQBandwidthCalculator.module.css";
 
 const modeOptions: Array<{ id: EqInputMode; label: string; helper: string; unit: string }> = [
@@ -42,6 +43,8 @@ export default function EqQBandwidthCalculator({ tool }: Readonly<{ tool: ToolDe
         </div>
         <strong>{tool.status}</strong>
       </header>
+
+      <SignalToolIntro tool={tool} />
 
       <section className={styles.workspace}>
         <div className={styles.controlsPanel}>
