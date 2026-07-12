@@ -8,6 +8,7 @@ import {
   formatDelay,
   type DelaySource
 } from "@/lib/signal/delay-distance";
+import SignalToolIntro from "@/features/senal/SignalToolIntro";
 import styles from "./DelayDistanceCalculator.module.css";
 
 const sourceOptions: Array<{ id: DelaySource; label: string; unit: string; helper: string }> = [
@@ -45,6 +46,8 @@ export default function DelayDistanceCalculator({ tool }: Readonly<{ tool: ToolD
         </div>
         <strong>{tool.status}</strong>
       </header>
+
+      <SignalToolIntro tool={tool} />
 
       <section className={styles.workspace}>
         <div className={styles.controlsPanel}>

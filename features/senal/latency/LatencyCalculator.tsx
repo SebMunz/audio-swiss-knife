@@ -7,6 +7,7 @@ import {
   formatLatencyNumber,
   type LatencyInputMode
 } from "@/lib/signal/latency";
+import SignalToolIntro from "@/features/senal/SignalToolIntro";
 import styles from "./LatencyCalculator.module.css";
 
 const modes: Array<{ id: LatencyInputMode; label: string; helper: string; unit: string }> = [
@@ -45,6 +46,8 @@ export default function LatencyCalculator({ tool }: Readonly<{ tool: ToolDefinit
         </div>
         <strong>{tool.status}</strong>
       </header>
+
+      <SignalToolIntro tool={tool} />
 
       <section className={styles.workspace}>
         <div className={styles.controlsPanel}>

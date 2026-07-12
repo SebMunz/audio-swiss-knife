@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import type { ToolDefinition } from "@/data/tools";
 import { calculateSnr, formatSnrNumber } from "@/lib/signal/snr";
+import SignalToolIntro from "@/features/senal/SignalToolIntro";
 import styles from "./SnrCalculator.module.css";
 
 const verdictCopy = {
@@ -37,6 +38,8 @@ export default function SnrCalculator({ tool }: Readonly<{ tool: ToolDefinition 
         </div>
         <strong>{tool.status}</strong>
       </header>
+
+      <SignalToolIntro tool={tool} />
 
       <section className={styles.workspace}>
         <div className={styles.controlsPanel}>

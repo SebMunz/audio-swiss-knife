@@ -8,6 +8,7 @@ import {
   formatPhaseNumber,
   type PhaseInputMode
 } from "@/lib/signal/phase";
+import SignalToolIntro from "@/features/senal/SignalToolIntro";
 import styles from "./PhaseCalculator.module.css";
 
 const modes: Array<{ id: PhaseInputMode; label: string; helper: string; unit: string }> = [
@@ -42,6 +43,8 @@ export default function PhaseCalculator({ tool }: Readonly<{ tool: ToolDefinitio
         </div>
         <strong>{tool.status}</strong>
       </header>
+
+      <SignalToolIntro tool={tool} />
 
       <section className={styles.workspace}>
         <div className={styles.controlsPanel}>

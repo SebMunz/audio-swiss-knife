@@ -7,6 +7,7 @@ import {
   formatAudioNumber,
   type AudioUnit
 } from "@/lib/signal/audio-units";
+import SignalToolIntro from "@/features/senal/SignalToolIntro";
 import styles from "./AudioUnitsCalculator.module.css";
 
 const units: Array<{ id: AudioUnit; label: string; helper: string }> = [
@@ -43,6 +44,8 @@ export default function AudioUnitsCalculator({ tool }: Readonly<{ tool: ToolDefi
         </div>
         <strong>{tool.status}</strong>
       </header>
+
+      <SignalToolIntro tool={tool} />
 
       <section className={styles.workspace}>
         <div className={styles.controlsPanel}>
