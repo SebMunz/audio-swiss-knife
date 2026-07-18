@@ -85,6 +85,10 @@ const toolCopy: Record<string, CorruptedCopy> = {
     title: "Piso de Ruido",
     description: "Mide cuanta sombra queda bajo la senal antes de contaminar el bus."
   },
+  "gain-staging": {
+    title: "Cadena de Ganancia",
+    description: "Vigila margen, techo y ruido mientras la senal atraviesa una etapa de amplificacion."
+  },
   lufs: {
     title: "Peso de la Ofrenda",
     description: "Lectura de loudness antes de inyectar el manifiesto en plataformas."

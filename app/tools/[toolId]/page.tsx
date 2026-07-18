@@ -4,6 +4,7 @@ import Rt60Calculator from "@/features/acustica/rt60/Rt60Calculator";
 import AudioUnitsCalculator from "@/features/senal/audio-units/AudioUnitsCalculator";
 import DelayDistanceCalculator from "@/features/senal/delay-distance/DelayDistanceCalculator";
 import EqQBandwidthCalculator from "@/features/senal/eq-q-bw/EqQBandwidthCalculator";
+import GainStagingCalculator from "@/features/senal/gain-staging/GainStagingCalculator";
 import LatencyCalculator from "@/features/senal/latency/LatencyCalculator";
 import PhaseCalculator from "@/features/senal/phase/PhaseCalculator";
 import SnrCalculator from "@/features/senal/snr/SnrCalculator";
@@ -48,6 +49,10 @@ export default function ToolPage({ params }: Readonly<{ params: { toolId: string
 
   if (tool.id === "snr") {
     return <SnrCalculator tool={tool} />;
+  }
+
+  if (tool.id === "gain-staging") {
+    return <GainStagingCalculator tool={tool} />;
   }
 
   return <PlaceholderTool tool={tool} />;

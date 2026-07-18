@@ -79,6 +79,17 @@ const introCopy: Record<string, SignalToolIntroCopy> = {
       what: "Mide cuanta sombra queda bajo la senal y traduce esa distancia a ratios, bits y margen de supervivencia.",
       use: "Usalo para saber si el bus porta una ofrenda limpia o si el ruido ya mordio el borde del ritual."
     }
+  },
+  "gain-staging": {
+    normal: {
+      what: "Modela una etapa de ganancia con nivel de entrada, ganancia aplicada, techo digital y piso de ruido.",
+      use: "Sirve para mantener headroom, evitar clipping y decidir si una etapa esta demasiado caliente o demasiado baja."
+    },
+    corrupted: {
+      title: "[CADENA_DE_GANANCIA]",
+      what: "Traza el recorrido de la senal por una etapa de amplificacion y mide cuanto margen queda antes del sello rojo.",
+      use: "Usalo para impedir que el bus atraviese el techo y queme transientes en el altar digital."
+    }
   }
 };
 
