@@ -8,6 +8,7 @@ import GainStagingCalculator from "@/features/senal/gain-staging/GainStagingCalc
 import LatencyCalculator from "@/features/senal/latency/LatencyCalculator";
 import PhaseCalculator from "@/features/senal/phase/PhaseCalculator";
 import SnrCalculator from "@/features/senal/snr/SnrCalculator";
+import ThdnCalculator from "@/features/senal/thdn/ThdnCalculator";
 import PlaceholderTool from "@/features/placeholder-tool/PlaceholderTool";
 
 export function generateStaticParams() {
@@ -53,6 +54,10 @@ export default function ToolPage({ params }: Readonly<{ params: { toolId: string
 
   if (tool.id === "gain-staging") {
     return <GainStagingCalculator tool={tool} />;
+  }
+
+  if (tool.id === "thdn") {
+    return <ThdnCalculator tool={tool} />;
   }
 
   return <PlaceholderTool tool={tool} />;

@@ -90,6 +90,17 @@ const introCopy: Record<string, SignalToolIntroCopy> = {
       what: "Traza el recorrido de la senal por una etapa de amplificacion y mide cuanto margen queda antes del sello rojo.",
       use: "Usalo para impedir que el bus atraviese el techo y queme transientes en el altar digital."
     }
+  },
+  thdn: {
+    normal: {
+      what: "Calcula THD y THD+N sumando armónicos y ruido en RMS frente a una fundamental.",
+      use: "Sirve para estimar limpieza, saturacion, ruido residual y SINAD en una medicion o etapa de audio."
+    },
+    corrupted: {
+      title: "[RESIDUO_ARMONICO]",
+      what: "Suma sombras armonicas y ruido de fondo contra la fundamental para revelar contaminacion del tono.",
+      use: "Usalo para decidir si el circuito canta limpio o si el sello ya fue mordido por distorsion."
+    }
   }
 };
 
